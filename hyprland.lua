@@ -23,7 +23,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = "",
-    mode     = "preferred",
+    mode     = "1920x1200@60",
     position = "auto",
     scale    = "auto",
 })
@@ -260,14 +260,20 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("kitty nvim ~/.config/kitty/kitty.conf"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("kitty nano ~/.bashrc"))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("firefox"))
+hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("keepass"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("thunderbird"))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("firefox --new-tab https://chatgpt.com"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("kitty nvim +262 ~/.config/hypr/hyprland.lua")) 
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("noctalia")
+    hl.exec_cmd("/usr/bin/kwalletd6 &")
 end)
 
 
