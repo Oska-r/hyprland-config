@@ -25,7 +25,7 @@ hl.monitor({
     output   = "",
     mode     = "1920x1200@60",
     position = "auto",
-    scale    = "auto",
+    scale    = "1",
 })
 
 
@@ -257,6 +257,9 @@ hl.device({
 ---- KEYBINDINGS ----
 ---------------------
 
+--- Claude addon
+hl.env("XDG_DATA_DIRS", "/home/oskar/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share")
+
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
@@ -265,15 +268,20 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("kitty nano ~/.bashrc"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("firefox"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("librewolf"))
 hl.bind(mainMod .. " + K", hl.dsp.exec_cmd("keepass"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("thunderbird"))
-hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("firefox --new-tab https://chatgpt.com"))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("claude-desktop"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("kitty nvim +262 ~/.config/hypr/hyprland.lua")) 
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("flameshot gui"))
+
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("noctalia")
     hl.exec_cmd("/usr/bin/kwalletd6 &")
+    hl.exec_cmd("kdrive")
+    hl.exec_cmd("protonvpn-app")
+    hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
 end)
 
 
